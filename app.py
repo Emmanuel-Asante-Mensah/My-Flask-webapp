@@ -1,11 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
-from pyngrok import ngrok
-
-# Open a tunnel on port 5000
-public_url = ngrok.connect(5000)
-print("Public URL:", public_url)
 
 
 app = Flask(__name__, static_folder='static')
