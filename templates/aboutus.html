@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>About Us - VendorConnect</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styling.css') }}">
+    </head>
+    
+    <body class="aboutus">
+        <header>
+            <h2>MARKORA</h2>
+        </header>
+        
+        <nav>
+            <a href="/homepage">Home</a>
+            <a href="/goods">Goods</a>
+            <a href="/services">Services</a>
+            <a href="/aboutus">About Us</a>
+            <a href="/bookings">Bookings</a>
+            <a href="{{ url_for('customer_profile') }}"> My Profile</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </nav>
+        
+        <header class="about-header">
+            <h1>About Us</h1>
+            <p>Connecting Clients & Customers to trusted services and goods</p>
+        </header>
+
+        <section class="about-section">
+            <h2>Who We Are</h2>
+            <p>We connect valued customers with trusted vendors, offering a seamless marketplace where clients discover the goods and services they need, and businesses flourish by meeting those demands.</p>
+            <img src="{{ url_for('static', filename='whoweare.png') }}" alt="Vendor and Customer handshake" width="800" height="500">
+        </section>
+
+        <section class="mission-section">
+            <h2>Our Mission</h2>
+            <p>Empowering businesses and enhancing shopping experiences through innovation and trust.</p>
+            <img src="{{ url_for('static', filename='mission.png') }}" alt="Mission illustration">
+        </section>
+
+        <section class="values-section">
+            <h2>Our Values</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <h3>Empowering Vendors</h3>
+                    <p>Helping businesses succeed.</p>
+                </div>
+                <div class="value-card">
+                    <h3>Delighting Customers</h3>
+                    <p>Enhancing the shopping experience.</p>
+                </div>
+                <div class="value-card">
+                    <h3>Building Trust</h3>
+                    <p>Reliable and secure transactions.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="team-section">
+            <h2>Meet the Team</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <img src="{{ url_for('static', filename='jake.png') }}" alt="Jake Thompson">
+                    <h4>Emmanuel</h4>
+                    <p>Vendor Relations Manager</p>
+                </div>
+                <div class="team-card">
+                    <img src="{{ url_for('static', filename='lisa.png') }}" alt="Lisa Nguyen">
+                    <h4>Asante</h4>
+                    <p>Customer Success Lead</p>
+                </div>
+                <div class="team-card">
+                    <img src="{{ url_for('static', filename='mark.png') }}" alt="Mark Stevens">
+                    <h4>Yaw</h4>
+                    <p>Platform Director</p>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+        <p>© 2026 VendorConnect — Connecting Vendors & Customers</p>
+        </footer>
+    </body>
+</html>

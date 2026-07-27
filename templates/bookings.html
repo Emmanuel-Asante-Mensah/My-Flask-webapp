@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Booking</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styling.css') }}">
+    </head>
+    <body class="booking">
+        <header>
+            <h2>MARKORA</h2>
+        </header>
+        
+        <nav>
+            <a href="/homepage">Home</a>
+            <a href="/goods">Goods</a>
+            <a href="/services">Services</a>
+            <a href="/aboutus">About Us</a>
+            <a href="/bookings">Bookings</a>
+            <a href="{{ url_for('customer_profile') }}"> My Profile</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </nav>
+
+        <header class="about-header">
+            <h1>My Bookings</h1>
+        </header>
+
+    <section>
+        <h2>Current Bookings</h2>
+        {% for booking in bookings %}
+        {% if booking.status != 'Completed' %}
+        <div class="booking-card">
+            <h3>{{ booking.service }}</h3>
+            <p>Scheduled: {{ booking.date }}</p>
+        <span>Status: {{ booking.status }}</span>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </section>
+
+    <section>
+        <h2>Completed Bookings</h2>
+        {% for booking in bookings %}
+        {% if booking.status == 'Completed' %}
+        <div class="booking-card completed">
+            <h3>{{ booking.service }}</h3>
+            <p>Completed on: {{ booking.date }}</p>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </section>
+
+    </body>
+</html>

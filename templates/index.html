@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Example</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styling.css') }}">
+</head>
+
+<script>
+  function togglePassword(fieldId) {
+    const field = document.getElementById(fieldId);
+    if (field.type === "password") {
+      field.type = "text";
+    } else {
+      field.type = "password";
+    }
+  }
+</script>
+
+<body class="login">
+    <div class="signup-container">
+    <h1>SIGN UP</h1>
+    <form method="POST" action="/">
+        <input type="text" name="username" placeholder="Username" required><br><br>
+        <input type="text" name="fname" placeholder="First name" required><br><br>
+        <input type="text" name="mnane" placeholder="Middle name"><br><br>
+        <input type="text" name="lname" placeholder="Last name" required><br><br>
+        <input type="date" name="dob" placeholder="Date of Birth" required><br><br>
+        <input type="email" name="email" placeholder="E-mail" required><br><br>
+        
+        <div class="password-container">
+        <input type="password" id="password" name="password" placeholder="Password" required>
+        <span class="toggle-eye" onclick="togglePassword('password')">👁️</span>
+        </div>
+        <br><br>
+
+        <div class="password-container">
+        <input type="password" id="confirm_password" name="confirm_password" placeholder="Re-enter password" required>
+        <span class="toggle-eye" onclick="togglePassword('confirm_password')">👁️</span>
+        </div>
+        <br><br>
+
+
+        <select name="usertype" required>
+            <option value="">---Please choose an option---</option>
+            <option value="Vendor">Vendor</option>
+            <option value="Customer">Customer</option>
+        </select><br><br>
+        <a href="/login"> I already have an account </a><br><br>
+        <button type="submit">Create Account</button>
+    </form>
+    </div>
+
+    {% if error %}
+        <div class="error">{{error}}</div>
+    {%endif%}
+
+</body>
+</html>

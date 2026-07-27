@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Book a Service</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styling.css') }}">
+    </head>
+    <body class="book">
+        <div class="form-container">
+        <h2>Book {{ service }} Service</h2>
+        <form action="{{ url_for('book') }}" method="post">
+        <label>Name:</label>
+        <input type="text" name="name" placeholder="Enter your name" required><br><br>
+
+        <label>Email:</label>
+        <input type="email" name="email" placeholder="Enter your email" required><br><br>
+
+        <label>Service:</label>
+        <input type="text" name="service" value="{{ service }}" readonly><br><br>
+
+        <label>Date:</label>
+        <input type="date" name="date" required><br><br>
+
+        <label>Payment Method:</label>
+        <select name="payment_method" required>
+        <option value="Visa">Visa</option>
+        <option value="Mastercard">Mastercard</option>
+        <option value="PayPal">PayPal</option>
+        <option value="Mobile Money">Mobile Money</option>
+        </select> <br><br>
+
+        <button type="submit" class="confirm-button">
+            Confirm & Pay
+        </button>
+
+
+        </form>
+        </div>
+    </body>
+</html>

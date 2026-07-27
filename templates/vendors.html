@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Goods and Sevices</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styling.css') }}">
+    </head>
+    <body class="goods">
+        <header>
+            <h2>MARKORA</h2>
+        </header>
+        
+        <nav>
+            <a href="/homepage">Home</a>
+            <a href="/goods">Goods</a>
+            <a href="/services">Services</a>
+            <a href="/aboutus">About Us</a>
+            <a href="/bookings">Bookings</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </nav>
+        
+        <header class="services-header">
+            <h1>GOODS AND SERVICES</h1>
+            <p>Find and book trusted businesses</p>
+        </header>
+
+        <section class="providers-grid">
+            {% for product in products %}
+            <div class="provider-card">
+                <!-- Marquee for product images -->
+                <marquee behavior="scroll" direction="left" scrollamount="5">
+                    {% if product.images %}
+                        {% for img in product.images %}
+                            <img src="{{ url_for('static', filename='uploads/' ~ img.filename) }}" 
+                                alt="{{ product.title }}" 
+                                style="width:150px; height:150px; margin-right:10px;">
+                        {% endfor %}
+                    {% else %}
+                        <img src="{{ url_for('static', filename='default.jpg') }}" 
+                            alt="{{ product.title }}" 
+                            style="width:150px; height:150px;">
+                    {% endif %}
+                </marquee>
+
+                <h3>{{ product.title }}</h3>
+                <p>{{ product.description }}</p>
+                <p><em>Price: ${{ product.price }}</em></p>
+                <p><small>Vendor: {{ product.vendor_name }}</small></p>
+
+                <a href="{{ url_for('book', service=product.title) }}" class="book-button">Book Now</a>
+            </div>
+            {% endfor %}
+        </section>
+
+        <section class="providers-grid">
+            {% for service in services %}
+            <div class="provider-card">
+                <!-- Marquee for service images -->
+                <marquee behavior="scroll" direction="left" scrollamount="5">
+                    {% if service.images %}
+                        {% for img in service.images %}
+                            <img src="{{ url_for('static', filename='uploads/' ~ img.filename) }}" 
+                                alt="{{ service.title }}" 
+                                style="width:150px; height:150px; margin-right:10px;">
+                        {% endfor %}
+                    {% else %}
+                        <img src="{{ url_for('static', filename='default.jpg') }}" 
+                            alt="{{ service.title }}" 
+                            style="width:150px; height:150px;">
+                    {% endif %}
+                </marquee>
+
+                <h3>{{ service.title }}</h3>
+                <p>{{ service.description }}</p>
+                <p><em>Price: ${{ service.price }}</em></p>
+                <p><small>Vendor: {{ service.vendor_name }}</small></p>
+
+                <a href="{{ url_for('book', service=service.title) }}" class="book-button">Book Now</a>
+            </div>
+            {% endfor %}
+        </section>
+
+    </body>
+</html>

@@ -1,0 +1,858 @@
+body.login {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url('bgimg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    backdrop-filter: blur(8px);
+}
+
+form {
+    width: 300px;
+    padding: 10px;
+    border: 5px solid #0f0e0e;
+    background: #fff;
+}
+
+.signup-container{
+    background: #fff;              /* white background */
+    border-radius: 10px;           /* rounded corners */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* shadow for depth */
+    padding: 20px;
+    width: 400px;                  /* fixed width */
+    text-align: center;            /* center content */
+    margin: 20px;
+}
+
+.signup-container h1 {
+    font-size: 2.2rem; /* make it larger */
+    font-weight: bold; /* thicker text */
+    color: #111111; /* white text for contrast */
+    text-align: center; /* center it above the form */
+    text-shadow: 0px 0px 0px rgba(0,0,0,0.6); /* glow/shadow for visibility */
+    margin-bottom: 20px; /* space between heading and form */
+    letter-spacing: 2px; /* spread out letters slightly */
+}
+
+h1{
+    writing-mode: horizontal-tb;
+    text-orientation: upright;
+    margin: 0;
+}
+
+.error {
+    background-color: #f8d7da;   /* light red background */
+    color: #721c24;              /* dark red text */
+    border: 1px solid #f5c6cb;   /* border matching background */
+    padding: 10px;
+    margin: 15px auto;
+    width: 300px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    padding: 10px;
+    margin: 15px auto;
+    width: 300px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+body.homepage {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: url('homepagebg.png') no-repeat center center/cover;
+    color: #333;
+        }
+
+header {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
+            }
+
+        nav a {
+            color: #333;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-weight: 500;
+            }
+
+        nav a:hover {
+            color: #0078D7;
+            }
+
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.4);
+            }
+
+        .hero h1 {
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            }
+
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            }
+
+        .hero button {
+            background-color: #0078D7;
+            color: #fff;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            }
+
+        .features {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 40px 20px;
+            }
+
+        .feature {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            width: 30%;
+            min-width: 250px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+            }
+
+        footer {
+            background: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            color: #555;
+            }
+
+body.aboutus {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #333;
+    background: url('homepagebg.png') no-repeat center center/cover;
+    }
+
+.about-header {
+    text-align: center;
+    color: #fff;
+    padding: 80px 20px;
+    background: rgba(0, 0, 0, 0.5);
+    }
+
+.about-section, .mission-section, .values-section, .team-section {
+    background: rgba(255, 255, 255, 0.9);
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 8px;
+    max-width: 1000px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.values-grid, .team-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+    }
+
+.value-card, .team-card {
+flex: 1 1 250px;
+text-align: center;
+background: #fff;
+border-radius: 8px;
+padding: 20px;
+box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.team-card img {
+width: 100px;
+height: 100px;
+border-radius: 50%;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+.values-grid, .team-grid {
+flex-direction: column;
+align-items: center;
+}
+}
+
+body.goods {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #333;
+    background: url('homepagebg.png') no-repeat center center/cover;
+    }
+
+body.services {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #333;
+    background: url('homepagebg.png') no-repeat center center/cover;
+    }
+
+header.services-header {
+text-align: center;
+padding: 60px 20px;
+color: #fff;
+background: rgba(0,0,0,0.5);
+}
+
+.providers-grid {
+display: flex;
+flex-wrap: wrap;
+gap: 20px;
+justify-content: center;
+padding: 20px;
+}
+
+.provider-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    width: 250px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.provider-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.provider-card img {
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+button {
+background: #ff7b00;
+color: #fff;
+border: none;
+padding: 10px 15px;
+border-radius: 5px;
+cursor: pointer;
+}
+
+button:hover {
+background: #e56a00;
+}
+
+.modal {
+display: none;
+position: fixed;
+top: 0; left: 0;
+width: 100%; height: 100%;
+background: rgba(0,0,0,0.6);
+justify-content: center; align-items: center;
+}
+
+.modal-content {
+background: #fff;
+padding: 30px;
+border-radius: 8px;
+max-width: 400px;
+margin: auto;
+}
+
+.status.in-progress { color: orange; }
+.status.completed { color: green; }
+
+@media (max-width: 768px) {
+.providers-grid { flex-direction: column; align-items: center; }
+}
+
+body.book {
+font-family: 'Segoe UI', Arial, sans-serif;
+background: url('homepagebg.png') no-repeat center center/cover;
+margin: 0;
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+}
+
+.form-container {
+background: rgba(255, 255, 255, 0.95);
+padding: 30px;
+border-radius: 10px;
+box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+width: 100%;
+max-width: 400px;
+}
+
+h2 {
+text-align: center;
+color: #333;
+}
+
+label {
+display: block;
+margin-top: 15px;
+font-weight: bold;
+}
+
+input, select {
+width: 90%;
+padding: 10px;
+margin-top: 5px;
+border: 1px solid #ccc;
+border-radius: 5px;
+}
+
+.confirm-button {
+margin-top: 20px;
+width: 100%;
+background-color: #ff7b00;
+color: white;
+border: none;
+padding: 12px;
+border-radius: 5px;
+cursor: pointer;
+}
+
+.confirm-button:hover {
+background-color: #e56a00;
+}
+
+body.booking {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #333;
+    background: url('homepagebg.png') no-repeat center center/cover;
+    }
+
+    /* Vendor navbar styling */
+.vendor-navbar {
+    background-color: #2c3e50; /* Dark blue-gray */
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.vendor-navbar a {
+    color: #f1c40f; /* Gold links */
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 12px;
+    transition: 0.3s;
+}
+
+.vendor-navbar a:hover {
+    background-color: #34495e;
+    border-radius: 5px;
+    color: #ffffff;
+}
+
+/* Vendor dashboard cards */
+.vendor-card {
+    border: 2px solid #f1c40f;
+    background-color: #ecf0f1;
+    padding: 20px;
+    margin: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.toggle-eye {
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.password-container {
+  position: relative;
+  width: 250px; /* adjust to match your form */
+}
+
+.password-container input {
+  width: 100%;
+  padding-right: 35px; /* space for the eye */
+  box-sizing: border-box;
+}
+
+.toggle-eye {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.service-actions {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.btn-add {
+    background: #ff7b00;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-add:hover {
+    background: #e56a00;
+}
+
+.add-service-form {
+    border: none;
+}
+
+/* Bookings Dashboard */
+.content {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.content h1 {
+    text-align: center;
+    font-size: 2.2rem;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.content p {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 25px;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 0.95rem;
+}
+
+table th, table td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: #0078D7;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+    transition: 0.2s ease;
+}
+
+/* Status colors */
+td:contains("Pending") {
+    color: orange;
+    font-weight: bold;
+}
+
+td:contains("Completed") {
+    color: green;
+    font-weight: bold;
+}
+
+/* Booking cards */
+.booking-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    padding: 20px;
+    margin: 15px auto;
+    max-width: 600px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.booking-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+}
+
+.booking-card h3 {
+    font-size: 1.4rem;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.booking-card p {
+    font-size: 1rem;
+    color: #555;
+    margin: 5px 0;
+}
+
+.booking-card span {
+    display: inline-block;
+    margin-top: 8px;
+    font-weight: bold;
+    padding: 6px 12px;
+    border-radius: 20px;
+}
+
+/* Status colors */
+.booking-card span {
+    background-color: #f1f1f1;
+    color: #333;
+}
+
+.booking-card span:contains("Pending") {
+    background-color: #ffe5b4;
+    color: #d35400;
+}
+
+.booking-card span:contains("Completed") {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.booking-card span:contains("In Progress") {
+    background-color: #ffeeba;
+    color: #856404;
+    font-weight: bold;
+    padding: 6px 12px;
+    border-radius: 20px;
+}
+
+
+/* Completed bookings card variation */
+.booking-card.completed {
+    border-left: 6px solid #28a745;
+}
+
+.btn-complete {
+    background-color: #0078D7; /* blue */
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-complete:hover {
+    background-color: #0056a3; /* darker blue */
+}
+
+.status-dropdown {
+    padding: 6px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease;
+}
+
+.status-dropdown:hover {
+    border-color: #0078D7;
+}
+
+.status-dropdown {
+    padding: 6px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease;
+}
+
+/* Change border color on hover */
+.status-dropdown:hover {
+    border-color: #0078D7;
+}
+
+/* Color-coded options */
+.status-dropdown option[value="Pending"] {
+    background-color: #ffe5b4; /* light orange */
+    color: #d35400;           /* dark orange text */
+}
+
+.status-dropdown option[value="In Progress"] {
+    background-color: #fff3cd; /* light yellow */
+    color: #856404;            /* brown text */
+}
+
+.status-dropdown option[value="Completed"] {
+    background-color: #d4edda; /* light green */
+    color: #155724;            /* dark green text */
+}
+
+body.profile {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: url('homepagebg.png') no-repeat center center/cover;
+    margin: 0;
+    padding: 40px;
+}
+
+.profile-container {
+    display: flex;
+    gap: 40px;
+    max-width: 1000px;
+    margin: auto;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.profile-container:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+
+.profile-picture {
+    flex: 1;
+    text-align: center;
+}
+
+.profile-picture img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    object-fit: cover;
+    border: 3px solid #0078D7;
+}
+
+.profile-picture .note {
+    font-size: 0.85rem;
+    color: #555;
+}
+
+.account-details {
+    flex: 2;
+}
+
+.account-details h2 {
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+.account-details label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+.account-details input[readonly],
+.account-details select[disabled] {
+    background-color: #f5f5f5;
+    color: #666;
+    cursor: not-allowed;
+}
+
+#editBtn {
+    background-color: #0078D7; /* blue */
+}
+#editBtn:hover {
+    background-color: #0056a3;
+}
+
+#saveBtn {
+    background-color: #28a745; /* green */
+}
+#saveBtn:hover {
+    background-color: #218838;
+}
+
+#passwordSection {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+#passwordSection.show {
+    display: block;
+    opacity: 1;
+}
+
+.customer-navbar {
+    background-color: #34495e;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.customer-navbar a {
+    color: #1abc9c; /* teal links */
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 12px;
+    transition: 0.3s;
+}
+
+.customer-navbar a:hover {
+    background-color: #2c3e50;
+    border-radius: 5px;
+    color: #ffffff;
+}
+
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.tab-link {
+  background: #0078D7;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px 5px 0 0;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.tab-link:hover {
+  background: #0056a3;
+}
+
+.tab-link.active {
+  background: #28a745; /* highlight active tab in green */
+}
+
+.tab-content {
+  display: none;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 0 5px 5px 5px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: white;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    width: 250px;
+}
+
+.card h4 {
+    margin-top: 0;
+    color: #333;
+}
+
+.card p {
+    margin: 5px 0;
+}
+
+.card .btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: #007BFF;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+hr {
+  height: 5px;              /* thickness */
+  background-color: #333;   /* color of the line */
+  border: none;             /* remove default border */
+}
+
+/* Normalize goods page action buttons */
+body.goods .btn-edit,
+body.goods .btn-delete {
+    display: inline-block;
+    min-width: 100px;          /* consistent width */
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px 12px;         /* same padding for both */
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    line-height: 1.4;          /* normalize vertical alignment */
+    box-sizing: border-box;    /* ensures padding doesn’t distort size */
+}
+
+/* Edit button */
+body.goods .btn-edit {
+    background-color: #28a745; /* green */
+    color: #fff;
+    text-decoration: none;     /* remove underline */
+    border: none;              /* match button element */
+}
+body.goods .btn-edit:hover {
+    background-color: #218838;
+}
+
+/* Delete button */
+body.goods .btn-delete {
+    background-color: #dc3545; /* red */
+    color: #fff;
+    border: none;
+    text-decoration: none;     /* match link element */
+}
+body.goods .btn-delete:hover {
+    background-color: #c82333;
+}
+
+/* Flex container for spacing */
+.service-actions {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 12px; /* equal spacing between buttons */
+}
+

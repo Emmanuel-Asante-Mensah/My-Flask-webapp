@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styling.css') }}">
+
+</head>
+
+
+<body class="homepage">
+    <h1 align = "center">Welcome {{ session['username'] }} !</h1>
+
+    {% if message and message_type == "success" %}
+        <div class="success">{{ message }}</div>
+    {% endif %}
+
+    <header>
+        <h2>MARKORA</h2>
+    </header>
+
+    <nav>
+        <a href="/homepage">Home</a>
+        <a href="/goods">Goods</a>
+        <a href="/services">Services</a>
+        <a href="/aboutus">About Us</a>
+        <a href="/bookings">Bookings</a>
+        <a href="{{ url_for('customer_profile') }}"> My Profile</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </nav>
+
+    <section class="hero">
+        <h1>Welcome to MarkOra</h1>
+        <p>Connecting Clients & Customers to trusted services and goods</p>
+        <button><a href="/vendors">Browse Vendors</a></button>
+    </section>
+
+    <section class="features">
+        <div class="feature">
+            <h3>Featured Vendors</h3>
+            <div class="cards">
+                {% for vendor in top_vendors %}
+                    <div class="card">
+                        <h4>{{ vendor.title }}</h4>
+                        <p>{{ vendor.description }}</p>
+                        <p>Price: ${{ vendor.price }}</p>
+                        <p>Vendor: {{ vendor.vendor_name }}</p>
+                        <a href="{{ url_for('book', service=vendor.title) }}" class="btn">Book Now</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="feature">
+            <h3>Featured Products</h3>
+            <div class="cards">
+                {% for product in top_products %}
+                    <div class="card">
+                        <h4>{{ product.title }}</h4>
+                        <p>{{ product.description }}</p>
+                        <p>Price: ${{ product.price }}</p>
+                        <p>Vendor: {{ product.vendor_name }}</p>
+                        <a href="{{ url_for('goods') }}" class="btn">View Product</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="feature">
+            <h3>Secure & Easy to Use</h3>
+            <p>Safe & Reliable<br>Simple to Navigate</p>
+        </div>
+    </section>
+
+    <footer>
+        <p> <a href="#">Contact Us</a> | Follow Us | © 2026 Markora</p>
+    </footer>
+
+</body>
+</html>

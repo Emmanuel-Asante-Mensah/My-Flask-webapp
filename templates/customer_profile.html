@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Profile - Customer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styling.css') }}">
+    <script>
+      function enableEditing() {
+        const inputs = document.querySelectorAll(".account-details input, .account-details select");
+        inputs.forEach(input => {
+          if (input.name !== "password") {
+            input.removeAttribute("readonly");
+            input.removeAttribute("disabled");
+          }
+        });
+        document.getElementById("passwordSection").classList.add("show");
+        document.getElementById("saveBtn").style.display = "inline-block";
+        document.getElementById("editBtn").style.display = "none";
+      }
+
+    </script>
+</head>
+<body class="profile">
+
+    <header>
+        <h2>MARKORA</h2>
+    </header>
+
+    <nav>
+        <a href="/homepage">Home</a>
+        <a href="/goods">Goods</a>
+        <a href="/services">Services</a>
+        <a href="/aboutus">About Us</a>
+        <a href="/bookings">Bookings</a>
+        <a href="{{ url_for('customer_profile') }}"> My Profile</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </nav>
+
+    <header class="about-header">
+        <h1>My Profile</h1>
+     </header>
+
+<div class="profile-container">
+    <!-- Tabs -->
+    <!-- Profile Tab -->
+        <div class="profile-picture">
+            {% if user.image_filename %}
+                <img src="{{ url_for('static', filename='uploads/' ~ user.image_filename) }}" alt="Profile Picture">
+            {% else %}
+                <img src="{{ url_for('static', filename='default-avatar.png') }}" alt="Profile Picture">
+            {% endif %}
+            <form method="POST" action="{{ url_for('upload_customer_picture') }}" enctype="multipart/form-data">
+                <input type="file" name="profile_image" accept="image/*">
+                <button type="submit" class="btn-edit">Upload new image</button>
+                <p class="note">JPG or PNG no larger than 1 MB</p>
+            </form><br>
+
+            <div class="tabs">
+                <button class="tab-link active" onclick="openTab(event, 'profileTab')">Profile</button>
+                <button class="tab-link" onclick="openTab(event, 'activityTab')">Bookings</button>
+                <button class="tab-link" onclick="openTab(event, 'preferencesTab')">Preferences</button>
+                <button class="tab-link" onclick="openTab(event, 'securityTab')">Security</button>
+            </div>
+
+        <div id="profileTab" class="tab-content active">
+             <!-- Existing profile form goes here -->
+        </div>
+
+    <!-- Bookings Tab -->
+    <div id="activityTab" class="tab-content">
+        <h2>My Bookings</h2>
+        {% if bookings %}
+            <ul>
+              {% for booking in bookings %}
+                <li>{{ booking.service }} on {{ booking.date }} - Status: {{ booking.status }}</li>
+              {% endfor %}
+            </ul>
+        {% else %}
+            <p>No bookings yet.</p>
+        {% endif %}
+    </div>
+
+    <!-- Security Tab -->
+    <div id="securityTab" class="tab-content">
+        <h2>Security Settings</h2>
+        <p>Last Login: {{ user.last_login or 'N/A' }}</p>
+        <button class="btn-edit">Enable Two-Factor Authentication</button>
+    </div>
+
+    <!-- Preferences Tab -->
+    <div id="preferencesTab" class="tab-content">
+        <h2>Preferences</h2>
+        <label><input type="checkbox" name="email_notifications" {% if user.email_notifications %}checked{% endif %}> Email Notifications</label>
+        <label><input type="checkbox" name="sms_notifications" {% if user.sms_notifications %}checked{% endif %}> SMS Notifications</label>
+    </div>
+</div>
+    
+
+        <div class="account-details">
+            <h2>Account Details</h2>
+            <form method="POST" action="{{ url_for('profile') }}">
+                <label>Username</label>
+                <input type="text" name="username" value="{{ user.username }}" readonly>
+
+                <label>First name</label>
+                <input type="text" name="fname" value="{{ user.fname or '' }}" readonly>
+
+                <label>Last name</label>
+                <input type="text" name="lname" value="{{ user.lname or '' }}" readonly>
+
+                <label>Date of Birth</label>
+                <input type="date" name="dob" value="{{ user.dob or '' }}" readonly>
+
+                <label>Email address</label>
+                <input type="email" name="email" value="{{ user.email }}" readonly>
+
+                <button type="button" id="editBtn" class="btn-edit" onclick="enableEditing()">Edit Profile</button>
+                <button type="submit" id="saveBtn" class="btn-edit" style="display:none;">Save Changes</button>
+            </form>
+        </div>
+
+</div>
+
+    <script>
+        function openTab(evt, tabId) {
+        document.querySelectorAll(".tab-content").forEach(tab => tab.classList.remove("active"));
+        document.querySelectorAll(".tab-link").forEach(btn => btn.classList.remove("active"));
+        document.getElementById(tabId).classList.add("active");
+        evt.currentTarget.classList.add("active");
+      }
+    </script>
+</body>
+</html>

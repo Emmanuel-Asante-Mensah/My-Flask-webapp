@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vendor Portal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styling.css') }}">
+</head>
+<body class="goods">
+    <div class="vendor-navbar">
+        <a href="{{ url_for('vendor_homepage') }}"> Home</a>
+        <a href="{{ url_for('vendor_bookings') }}"> Bookings</a>
+        <a href="{{ url_for('vendor_add_product') }}">My Products</a>
+        <a href="{{ url_for('vendor_add_service') }}">My Services</a>
+        <a href="{{ url_for('profile') }}"> My profile</a>
+        <a href="{{ url_for('logout') }}"> Logout</a>
+    </div>
+
+    <div class="content">
+        <h1>Welcome Vendor {{ username }}!</h1>
+        <p>This is your vendor dashboard. Manage your bookings and showcase your goods or services.</p>
+
+        <div class="vendor-card">
+            <h2>📑 Recent Bookings</h2>
+            <p>View and manage customer requests.</p>
+            <a href="{{ url_for('vendor_bookings') }}">Go to Bookings</a>
+        </div>
+
+        <div class="vendor-card">
+            <h2>🛍️ Manage Services</h2>
+            <p>Add or update your goods and services.</p>
+            <a href="{{ url_for('vendor_add_service') }}">Go to my Services</a> |
+            <a href="{{ url_for('vendor_add_product') }}">Go to my Goods</a>
+        </div>
+
+        {% for product in products %}
+        <div class="vendor-card">
+            <h3>{{ product.title }}</h3>
+            <p>{{ product.description }}</p>
+            <p>Price: ${{ product.price }}</p>
+            <form action="{{ url_for('vendor_delete_product', product_id=product.id) }}" method="POST">
+                <button type="submit">Delete</button>
+            </form>
+            <a href="{{ url_for('vendor_edit_product', product_id=product.id) }}">Edit</a>
+        </div>
+        {% endfor %}
+
+    </div>
+
+    {% for product in products %}
+<div class="vendor-card">
+    <h3>{{ product.title }}</h3>
+    <p>{{ product.description }}</p>
+    <p>Price: ${{ product.price }}</p>
+    <form action="{{ url_for('vendor_delete_product', product_id=product.id) }}" method="POST">
+        <button type="submit">Delete</button>
+    </form>
+    <a href="{{ url_for('vendor_edit_product', product_id=product.id) }}">Edit</a>
+</div>
+{% endfor %}
+
+</body>
+</html>

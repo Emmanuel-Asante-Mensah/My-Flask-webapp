@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Service</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styling.css') }}">
+</head>
+<body class="goods">
+    <div class="vendor-navbar">
+        <a href="{{ url_for('vendor_homepage') }}"> Home</a>
+        <a href="{{ url_for('vendor_bookings') }}"> Bookings</a>
+        <a href="{{ url_for('vendor_add_product') }}">My Products</a>
+        <a href="{{ url_for('vendor_add_service') }}">My Services</a>
+        <a href="{{ url_for('profile') }}"> My profile</a>
+        <a href="{{ url_for('logout') }}"> Logout</a>
+    </div>
+
+     <div class="content">
+        <h1>Add a New Service</h1>
+        <form method="POST" enctype="multipart/form-data">
+            <input type="text" name="title" placeholder="Service Title" required><br><br>
+            <textarea name="description" placeholder="Description" required></textarea><br><br>
+            <input type="number" step="0.01" name="price" placeholder="Price" required><br><br>
+            <input type="file" name="images" accept="image/*" multiple><br><br>
+            <button type="submit" class="btn-add">Add Service</button>
+        </form>
+    </div>
+
+    <hr>
+    <h2> MY SERVICES </h2>
+    <div class="providers-grid">
+        {% for service in services %}
+        <div class="provider-card">
+            <h3>{{ service.title }}</h3>
+            <p>{{ service.description }}</p>
+            <p><em>Price: ${{ service.price }}</em></p>
+
+            {% if service.images %}
+                {% for img in service.images %}
+                    <img src="{{ url_for('static', filename='uploads/' ~ img.filename) }}" 
+                        alt="{{ service.title }}" 
+                        style="width:120px; height:120px; margin:5px;">
+                {% endfor %}
+            {% else %}
+                <img src="{{ url_for('static', filename='default.jpg') }}" 
+                    alt="{{ service.title }}" 
+                    style="width:120px; height:120px;">
+            {% endif %}
+
+        <div class="service-actions">
+            <form action="{{ url_for('vendor_delete_service', service_id=service.id) }}" 
+                method="POST" 
+                enctype="multipart/form-data"
+                class="add-service-form"
+                style="display:inline;" 
+                onsubmit="return confirmDelete();">
+                <a href="{{ url_for('vendor_edit_service', service_id=service.id) }}" class="btn-edit">✏️ Edit</a>
+                <button type="submit" class="btn-delete">🗑️ Delete</button>
+            </form>
+                
+            <script>
+            function confirmDelete() {
+                return confirm("Are you sure you want to delete this service?");
+            }
+            </script>
+
+        </div>
+
+        </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html>
