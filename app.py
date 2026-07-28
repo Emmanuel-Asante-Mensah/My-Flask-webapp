@@ -1,19 +1,13 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
-from pyngrok import ngrok
-
-# Open a tunnel on port 5000
-public_url = ngrok.connect(5000)
-print("Public URL:", public_url)
-
 
 app = Flask(__name__, static_folder='static')
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-PAYSTACK_SECRET_KEY = "your_paystack_secret_key"
+PAYSTACK_SECRET_KEY = "sk_test_63f3504a3964f9c62bc5e8ac1535a92daf562cfc"
 
 from flask_migrate import Migrate
 
@@ -59,7 +53,8 @@ class Booking(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     customer_name = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(120), nullable=False)
-    service = db.Column(db.String(100), nullable=False)
+    item_type = db.Column(db.String(20), nullable=False)
+    item_title = db.Column(db.String(100), nullable=False)
     date = db.Column(db.String(20), nullable=False)
     payment_method = db.Column(db.String(50), nullable=False)
     status = db.Column(db.String(20), default="Pending") # Pending, In Progress, Completed
@@ -70,7 +65,7 @@ class Product(db.Model):
     title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(200), nullable=False)
     price = db.Column(db.Float, nullable=False)
-    image_filename = db.Column(db.String(200), nullable=True) 
+    image_filename = db.Column(db.String(200), nullable=True)
 
 class ProductImage(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -85,7 +80,7 @@ class Service(db.Model):
     title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(200), nullable=False)
     price = db.Column(db.Float, nullable=False)
-    image_filename = db.Column(db.String(200), nullable=True) 
+    image_filename = db.Column(db.String(200), nullable=True)
 
 class ServiceImage(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -95,7 +90,7 @@ class ServiceImage(db.Model):
     service = db.relationship('Service', backref=db.backref('images', lazy=True))
 
 
-with app.app_context(): 
+with app.app_context():
     db.create_all()
 
 @app.route("/submit", methods=["POST"])
@@ -150,7 +145,7 @@ def login():
 
             if user.usertype == "Vendor":
                  return redirect(url_for("vendor_homepage"))
-            else: 
+            else:
                 return redirect(url_for("homepage"))
         else:
             error_message = "Wrong email or password!"
@@ -259,16 +254,21 @@ def book():
     if request.method == 'POST':
         name = request.form.get('name')
         email = request.form.get('email')
-        service = request.form.get('service')
+        item_type = request.form.get('item_type')  # "service" or "product"
+        item_title = request.form.get('title')
         date = request.form.get('date')
         payment_method = request.form.get('payment_method')
 
-        # Get service price from DB
-        service_obj = Service.query.filter_by(title=service).first()
-        price = service_obj.price if service_obj else 0
+        # Decide whether to query Service or Product
+        if item_type == "service":
+            item_obj = Service.query.filter_by(title=item_title).first()
+        else:
+            item_obj = Product.query.filter_by(title=item_title).first()
+
+        price = item_obj.price if item_obj else 0
 
         if price <= 0:
-            return "Invalid service price. Please contact support."
+            return "Invalid price. Please contact support."
 
         # Initialize Paystack payment
         headers = {
@@ -284,14 +284,13 @@ def book():
         response = requests.post("https://api.paystack.co/transaction/initialize",
                                  json=data, headers=headers)
         res_data = response.json()
-        print(res_data)  # Debugging: see exact error
 
         if res_data.get("status"):
-            # Store booking details in session until payment succeeds
             session["pending_booking"] = {
                 "name": name,
                 "email": email,
-                "service": service,
+                "item_type": item_type,
+                "title": item_title,
                 "date": date,
                 "payment_method": payment_method
             }
@@ -299,8 +298,9 @@ def book():
         else:
             return f"Payment initialization failed: {res_data}"
 
-    service = request.args.get('service')
-    return render_template('book.html', service=service)
+    item_type = request.args.get('item_type')
+    title = request.args.get('title')
+    return render_template('book.html', item_type=item_type, title=title)
 
 
 import requests
@@ -320,7 +320,8 @@ def payment_callback():
             new_booking = Booking(
                 customer_name=booking_data["name"],
                 email=booking_data["email"],
-                service=booking_data["service"],
+                item_type=booking_data["item_type"],
+                item_title=booking_data["title"],
                 date=booking_data["date"],
                 payment_method=booking_data["payment_method"],
                 status="Completed"
