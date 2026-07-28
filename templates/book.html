@@ -10,24 +10,29 @@
         <div class="form-container">
         <h2>Book {{ service }} Service</h2>
         <form action="{{ url_for('book') }}" method="post">
+
+        <input type="hidden" name="item_type" value="{{ item_type }}">
+        <input type="text" name="title" value="{{ title }}" readonly>
+
+
         <label>Name:</label>
         <input type="text" name="name" placeholder="Enter your name" required><br><br>
 
         <label>Email:</label>
         <input type="email" name="email" placeholder="Enter your email" required><br><br>
 
-        <label>Service:</label>
-        <input type="text" name="service" value="{{ service }}" readonly><br><br>
+        <label>{{ item_type|capitalize }}:</label>
+        <input type="text" value="{{ title }}" readonly><br><br>
 
         <label>Date:</label>
         <input type="date" name="date" required><br><br>
 
         <label>Payment Method:</label>
         <select name="payment_method" required>
-        <option value="Visa">Visa</option>
-        <option value="Mastercard">Mastercard</option>
-        <option value="PayPal">PayPal</option>
-        <option value="Mobile Money">Mobile Money</option>
+            <option value="Visa">Visa</option>
+            <option value="Mastercard">Mastercard</option>
+            <option value="PayPal">PayPal</option>
+            <option value="Mobile Money">Mobile Money</option>
         </select> <br><br>
 
         <button type="submit" class="confirm-button">

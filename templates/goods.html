@@ -8,7 +8,7 @@
         <header>
             <h2>MARKORA</h2>
         </header>
-        
+
         <nav>
             <a href="/homepage">Home</a>
             <a href="/goods">Goods</a>
@@ -18,7 +18,7 @@
             <a href="{{ url_for('customer_profile') }}"> My Profile</a>
             <a href="{{ url_for('logout') }}">Logout</a>
         </nav>
-        
+
         <header class="services-header">
             <h1>GOODS</h1>
             <p>Find and book trusted businesses</p>
@@ -31,13 +31,13 @@
                 <marquee behavior="scroll" direction="left" scrollamount="5">
                     {% if product.images %}
                         {% for img in product.images %}
-                            <img src="{{ url_for('static', filename='uploads/' ~ img.filename) }}" 
-                                alt="{{ product.title }}" 
+                            <img src="{{ url_for('static', filename='uploads/' ~ img.filename) }}"
+                                alt="{{ product.title }}"
                                 style="width:150px; height:150px; margin-right:10px;">
                         {% endfor %}
                     {% else %}
-                        <img src="{{ url_for('static', filename='default.jpg') }}" 
-                            alt="{{ product.title }}" 
+                        <img src="{{ url_for('static', filename='default.jpg') }}"
+                            alt="{{ product.title }}"
                             style="width:150px; height:150px;">
                     {% endif %}
                 </marquee>
@@ -47,7 +47,12 @@
                 <p><em>Price: ${{ product.price }}</em></p>
                 <p><small>Vendor: {{ product.vendor_name }}</small></p>
 
-                <a href="{{ url_for('book', service=product.title) }}" class="book-button">Book Now</a>
+                <form action="{{ url_for('book') }}" method="get">
+                  <input type="hidden" name="item_type" value="product">
+                  <input type="hidden" name="title" value="{{ product.title }}">
+                  <button type="submit" class="book-button">Book Now</button>
+                </form>
+
             </div>
             {% endfor %}
         </section>
