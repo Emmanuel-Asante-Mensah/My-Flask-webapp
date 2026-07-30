@@ -199,7 +199,10 @@ def homepage():
     # Top 3 vendors by bookings (return Service objects)
     top_vendors = (
         db.session.query(Service)
-        .join(Booking, Booking.service == Service.title)
+        .outerjoin(
+            Booking,
+            db.and_(Booking.item_title == Service.title, Booking.item_type == "service")
+        )
         .group_by(Service.id)
         .order_by(func.count(Booking.id).desc())
         .limit(3)
@@ -494,11 +497,26 @@ def profile():
 
         try:
             db.session.commit()
-            return render_template("profile.html", user=user, success="Profile updated successfully!")
+            return render_template(
+                "profile.html", user=user, success="Profile updated successfully!",
+                bookings=Booking.query.all(),
+                products=Product.query.filter_by(vendor_name=user.username).all(),
+                services=Service.query.filter_by(vendor_name=user.username).all()
+            )
         except Exception as e:
-            return render_template("profile.html", user=user, error=f"Error: {e}")
+            return render_template(
+                "profile.html", user=user, error=f"Error: {e}",
+                bookings=Booking.query.all(),
+                products=Product.query.filter_by(vendor_name=user.username).all(),
+                services=Service.query.filter_by(vendor_name=user.username).all()
+            )
 
-    return render_template("profile.html", user=user)
+    return render_template(
+        "profile.html", user=user,
+        bookings=Booking.query.all(),
+        products=Product.query.filter_by(vendor_name=user.username).all(),
+        services=Service.query.filter_by(vendor_name=user.username).all()
+    )
 
 @app.route("/upload_profile_picture", methods=["POST"])
 def upload_profile_picture():
@@ -543,11 +561,20 @@ def customer_profile():
 
         try:
             db.session.commit()
-            return render_template("customer_profile.html", user=user, success="Profile updated successfully!")
+            return render_template(
+                "customer_profile.html", user=user, success="Profile updated successfully!",
+                bookings=Booking.query.filter_by(email=user.email).all()
+            )
         except Exception as e:
-            return render_template("customer_profile.html", user=user, error=f"Error: {e}")
+            return render_template(
+                "customer_profile.html", user=user, error=f"Error: {e}",
+                bookings=Booking.query.filter_by(email=user.email).all()
+            )
 
-    return render_template("customer_profile.html", user=user)
+    return render_template(
+        "customer_profile.html", user=user,
+        bookings=Booking.query.filter_by(email=user.email).all()
+    )
 
 @app.route("/upload_customer_picture", methods=["POST"])
 def upload_customer_picture():

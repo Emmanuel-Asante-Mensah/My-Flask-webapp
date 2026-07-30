@@ -71,7 +71,7 @@
         {% if bookings %}
             <ul>
               {% for booking in bookings %}
-                <li>{{ booking.service }} on {{ booking.date }} - Status: {{ booking.status }}</li>
+                <li>{{ booking.item_title }} on {{ booking.date }} - Status: {{ booking.status }}</li>
               {% endfor %}
             </ul>
         {% else %}

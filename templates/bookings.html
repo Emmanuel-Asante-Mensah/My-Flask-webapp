@@ -28,7 +28,7 @@
         {% for booking in bookings %}
         {% if booking.status != 'Completed' %}
         <div class="booking-card">
-            <h3>{{ booking.service }}</h3>
+            <h3>{{ booking.item_title }}</h3>
             <p>Scheduled: {{ booking.date }}</p>
         <span>Status: {{ booking.status }}</span>
         </div>
@@ -41,7 +41,7 @@
         {% for booking in bookings %}
         {% if booking.status == 'Completed' %}
         <div class="booking-card completed">
-            <h3>{{ booking.service }}</h3>
+            <h3>{{ booking.item_title }}</h3>
             <p>Completed on: {{ booking.date }}</p>
         </div>
         {% endif %}
