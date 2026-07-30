@@ -10,7 +10,7 @@ body.login {
     backdrop-filter: blur(8px);
 }
 
-form {
+.signup-container form {
     width: 300px;
     padding: 10px;
     border: 5px solid #0f0e0e;
