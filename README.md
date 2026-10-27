@@ -15,7 +15,7 @@ The app is built with clean, consistent styling and responsive layouts for a smo
 ## ⚙️ Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/username/my-Flask-webapp.git
+   git clone https://github.com/Emmanuel-Asante-Mensah/my-Flask-webapp.git
 2. Navigate into the project folder:
    cd my-Flask-webapp
 3. Install dependencies:
